@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordion Component</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* 
+      MAIN COLOR: #087f5b
+      GREY COLOR: #343a40
+      */
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Lora", serif;
+        color: #343a40;
+        line-height: 1;
+      }
+
+      .accordion {
+        width: 700px;
+        margin: 100px auto;
+
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .item {
+        box-shadow: 24px 24px 24px rgba(0, 0, 0, 0.2);
+        padding: 24px;
+        
+
+        /* GRID SETTING */
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        column-gap: 24px;
+        row-gap: 32px;
+      }
+
+      .number,
+      .text {
+        font-size: 24px;
+        font-weight: 600;
+        /* color: #087f5b; */
+      }
+
+      .number{
+        color: #ced4da;
+      }
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        stroke: #087f5b;
+      }
+
+      .hidden-box {
+        grid-column: 2/3;
+        display: none;
+      }
+
+      .hidden-box p {
+        line-height: 1.5;
+        margin-bottom: 24px;
+      }
+
+      .hidden-box ul {
+        margin-left: 20px;
+        color: #868e96;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        /* align-items: center; */
+      }
+      .open{
+        border-top: 8px solid #087f5b;
+      }
+
+      .open .hidden-box{
+        display: block;
+      }
+
+      .open .number,
+      .open .text {
+        color: #087f5b;
+      }
+      /* .hidden-box li{
+        margin-bottom: 12px;
+      } */
+    
+    .carousel {
+        background-color: #337492;
+        width: 800px;
+        margin: 100px auto;
+        padding: 32px;
+        padding-left: 86px;
+        padding-right: 48px;
+        color: #e6fcf5;
+        border-radius: 8px;
+        position: relative;
+
+        /* FLEX */
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 86px;
+      }
+
+      img {
+        height: 200px;
+        transform: scale(1.5);
+        border-radius: 8px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+      }
+
+      .btn {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        border-radius: 50%;
+        border: none;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .btn-icon {
+        stroke: #337492;
+        width: 24px;
+        height: 24px;
+      }
+
+      .btn-left {
+        left: 0;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .btn-right {
+        right: 0px;
+        top: 50%;
+        transform: translate(50%, -50%);
+      }
+
+      .quote-text {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.5;
+        margin-bottom: 32px;
+      }
+
+      .quote-author {
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .quote-job {
+        font-size: 12px;
+      }
+
+      .dots {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, 32px);
+        display: flex;
+        gap: 12px;
+      }
+
+      .dot {
+        height: 12px;
+        width: 12px;
+        background-color: white;
+        border: 2px solid #337492;
+        border-radius: 50%;
+      }
+      .dot-fill {
+        background-color: #337492;
+      }
+
+       table {
+        width: 800px;
+        margin: 100px auto;
+        /* border: 1px solid #343a40; */
+        font-size: 18px;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        /* border: 1px solid #343a40; */
+        text-align: left;
+        padding: 16px 24px;
+        width: 25%;
+      }
+
+      thead th {
+        background-color: #337492;
+        color: #fff;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #dee2e6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="accordion">
+      <div class="item">
+        <p class="number">01</p>
+        <p class="text">Project net worth over time</p>
+
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+            clip-rule="evenodd"
+          />
+        </svg>
+
+        <div class="hidden-box">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+            doloribus voluptatum labore nobis similique magni at enim! Debitis
+            quasi mollitia consectetur natus placeat quam omnis accusantium
+            quibusdam. Optio cum, quaerat hic id inventore delectus amet alias
+            dicta voluptate rem numquam ab ea iure, distinctio, pariatur fuga
+            aut nisi provident excepturi!
+          </p>
+
+          <ul>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Recusandae, dolorum.
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Recusandae, dolorum.
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Recusandae, dolorum.
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Recusandae, dolorum.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+</head>
+  <body>
+    <div class="accordion">
+      <div class="item open">
+        <p class="number">02</p>
+        <p class="text">Incorporate the essential data</p>
+
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+            clip-rule="evenodd"
+          />
+        </svg>
+
+        <div class="hidden-box">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+            doloribus voluptatum labore nobis similique magni at enim! Debitis
+            quasi mollitia consectetur natus placeat quam omnis accusantium
+            quibusdam. Optio cum, quaerat hic id inventore delectus amet alias
+            dicta voluptate rem numquam ab ea iure, distinctio, pariatur fuga
+            aut nisi provident excepturi!
+          </p>
+
+          <ul>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Recusandae, dolorum.
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Recusandae, dolorum.
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Recusandae, dolorum.
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Recusandae, dolorum.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+</head>
+  <body>
+    <div class="accordion">
+      <div class="item">
+        <p class="number">03</p>
+        <p class="text">Reflect your all-in costs</p>
+
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+            clip-rule="evenodd"
+          />
+        </svg>
+
+        <div class="hidden-box">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+            doloribus voluptatum labore nobis similique magni at enim! Debitis
+            quasi mollitia consectetur natus placeat quam omnis accusantium
+            quibusdam. Optio cum, quaerat hic id inventore delectus amet alias
+            dicta voluptate rem numquam ab ea iure, distinctio, pariatur fuga
+            aut nisi provident excepturi!
+          </p>
+
+          <ul>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Recusandae, dolorum.
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Recusandae, dolorum.
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Recusandae, dolorum.
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Recusandae, dolorum.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+       <div class="carousel">
+      <img src="star.avif" alt="Star" />
+
+      <blockquote class="quote">
+        <p class="quote-text">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis
+          nemo eveniet magnam ducimus, hic reiciendis ipsum eum provident amet
+          enim excepturi sapiente molestiae nihil fugiat quasi, tenetur maxime,
+          quam aut?
+        </p>
+        <p class="quote-author">Star</p>
+        <p class="quote-job">Street</p>
+      </blockquote>
+      <button class="btn btn-left">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="btn-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 19.5L8.25 12l7.5-7.5"
+          />
+        </svg>
+      </button>
+      <button class="btn btn-right">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="btn-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 4.5l7.5 7.5-7.5 7.5"
+          />
+        </svg>
+      </button>
+      <div class="dots">
+        <button class="dot">&nbsp;</button>
+        <button class="dot dot-fill">&nbsp;</button>
+        <button class="dot">&nbsp;</button>
+        <button class="dot">&nbsp;</button>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Chair</th>
+          <th>The Laid Back</th>
+          <th>The Worker Bee</th>
+          <th>The Chair 4/2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Width</th>
+          <td>80cm</td>
+          <td>60cm</td>
+          <td>220cm</td>
+        </tr>
+        <tr>
+          <th>Height</th>
+          <td>100cm</td>
+          <td>60cm</td>
+          <td>220cm</td>
+        </tr>
+        <tr>
+          <th>Depth</th>
+          <td>80cm</td>
+          <td>60cm</td>
+          <td>220cm</td>
+        </tr>
+        <tr>
+          <th>Weight</th>
+          <td>80cm</td>
+          <td>60cm</td>
+          <td>220cm</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+
+
